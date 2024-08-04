@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大西 慧大_ポートフォリオ</title>
+    <!-- AOSのCSSファイルをCDNから読み込む -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        /* 基本的なスタイルの設定 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000; /* 背景色を黒に設定 */
+            color: #fff; /* テキストの色を白に設定 */
+            scroll-behavior: smooth; /* スムーススクロールを有効にする */
+        }
+        .header {
+            position: relative; /* 相対位置に設定 */
+            height: 100vh; /* ビューポート全体の高さ */
+            background-image: url('dai.jpg'); /* 背景画像を指定 */
+            background-size: cover; /* 背景画像のサイズをカバーするように設定 */
+            background-position: center; /* 画像の位置を中央に設定 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            animation: slide 27s infinite; /* アニメーションを適用 */
+            overflow: hidden; /* 内容がはみ出さないように設定 */
+        }
+        @keyframes slide {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+        .overlay-image {
+            position: absolute; /* 絶対位置で画像を配置 */
+            top: 50%; /* 垂直方向の中心に配置 */
+            left: 50%; /* 水平方向の中心に配置 */
+            transform: translate(-50%, -50%); /* 画像の中心を指定位置に合わせる */
+            width: 300px; /* 画像の幅を設定 */
+            height: auto; /* 高さは自動で調整 */
+            z-index: 1; /* 背景画像の上に表示するためにz-indexを設定 */
+        }
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(24, 24, 24, 0.5); /* 透過オーバーレイ（黒） */
+            z-index: 1;
+        }
+        .header h1 {
+            position: absolute; /* 絶対位置に設定 */
+            top: 50px; /* 上からの距離 */
+            left: 60px; /* 左からの距離 */
+            z-index: 2; /* テキストが画像の上に表示されるように設定 */
+            margin: 0; /* 余白をリセット */
+            font-size: 100px; /* フォントサイズを設定 */
+            /*text-shadow: 
+                -2px -2px 0 #000,  
+                2px -2px 0 #000,  
+                -2px 2px 0 #000,  
+                2px 2px 0 #000;  /* 黒い縁取りを追加 */
+        }
+        .header-text {
+            position: absolute;
+            top: 220px; /* ヘッダーの下部に配置 */
+            left: 34%;
+            transform: translateX(-50%); /* 水平方向の中央揃え */
+            color: #ffffff; /* 文字色を白に設定 */
+            font-size: 40px; /* フォントサイズを設定 */
+            text-align: left; /* 中央揃え */
+            max-width: 100%; /* 最大幅を80%に設定 */
+            z-index: 2; /* 他の要素より上に表示 */
+            margin: 0; /* 余白をリセット */
+            font-weight: bold; /* テキストを太文字に設定 */
+            /*background-color: rgba(96, 96, 96, 0.7); /* 半透明の背景色を設定 */
+        }
+
+        .nav-links {
+            position: fixed; /* 固定位置に設定 */
+            top: 0; /* 上からの距離 */
+            left: 0; /* 左からの距離 */
+            width: 100%; /* 幅を100%に設定 */
+            display: flex; /* フレックスボックスを使用 */
+            justify-content: center; /* コンテンツを中央揃え */
+            background-color: rgba(0, 0, 0, 0.7); /* 半透明の背景色を設定 */
+            padding: 10px 0; /* 上下に余白を設定 */
+            z-index: 3; /* ヘッダーの上に表示 */
+            transition: opacity 0.5s; /* フェードアウトアニメーション */
+        }
+        .nav-links.hidden {
+            opacity: 0; /* フェードアウト時の透明度 */
+        }
+        .nav-links a {
+            color: #fff; /* リンクの色を白に設定 */
+            margin: 0 15px; /* リンク間の余白を追加 */
+            text-decoration: none; /* 下線を削除 */
+            font-size: 19px; /* フォントサイズを設定 */
+        }
+        .nav-links a:hover {
+            text-decoration: underline; /* ホバー時に下線を表示 */
+        }
+        .container {
+            padding: 50px;
+            margin-top: 400px;
+            display: flex; /* Flexboxを使用 */
+            flex-direction: column; /* 縦に並べる */
+            align-items: center; /* 横方向に左揃え */
+        }
+        .image-container {
+            display: flex; /* Flexboxを使用 */
+            align-items: center; /* 縦方向の中央揃え */
+            margin-bottom: 400px; /* 下の余白 */
+        }
+        .image {
+            width: 600px; /* 画像の幅を設定 */
+            height: 600px; /* 画像の高さを設定 */
+            background-size: cover;
+            background-position: left center; /* 画像を左寄せに設定 */
+            border: 5px solid #000000; /* フレームを黒色で設定 */
+            box-shadow: 0 0 40px rgba(255,255,255,0.5); /* フレームにシャドウを追加 */
+        }
+        .description {
+            margin-left: 80px !important; /* 画像との間にスペースを追加 */
+            margin-top: -20px !important;
+            color: #fff; /* テキストの色を白に設定 */
+            max-width: 400px; /* 説明文の最大幅 */
+            /*font-weight: bold; /* テキストを太文字に設定 */
+            font-size: 21px; /* フォントサイズを設定 */
+        }
+        .reverse {
+            flex-direction: row-reverse; /* 配置を反転 */
+        }
+        .reverse .description {
+            margin-left: 100; /* 左の余白をリセット */
+            margin-right: 100px; /* 右にスペースを追加 */
+        }
+        /* 新しい文章のスタイル */
+        .text-content {
+            max-width: 800px;
+            margin-bottom: 50px;
+            text-align: center;
+            line-height: 1.5;
+            font-size: 20px;
+            /*font-weight: bold; /* テキストを太文字に設定 */
+        }
+        /* 画像と文章の間にスペースを追加するスタイル */
+        .first-text {
+            margin-bottom: 500px; /* 調整したいスペースのサイズを設定 */
+        }
+
+        /* 画像と説明文の間のスペースを調整するスタイル（必要に応じて） */
+        .image-container {
+            position: relative;
+            margin-bottom: 300px; /* 画像と次のセクションの間にスペースを追加する例 */
+        }
+
+        /* セクションごとに異なる背景色を設定 */
+        #section1 {
+            background-color: #18472c; /* ダークグレー */
+        }
+        #section2 {
+            background-color: #30240b; /* グレー */
+        }
+        #section3 {
+            background-color: #3a0a0a; /* 明るいグレー */
+        }
+        #section4 {
+            background-color: #0c3749; /* さらに明るいグレー */
+        }
+        #scroll-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            display: none; /* 初期状態では非表示 */
+            z-index: 1000;
+        }
+        #scroll-top:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        /* プロフィールセクションのスタイル調整 */
+#section5 {
+    background-color: #2a2a2a; /* 背景色を設定（例: 暗いグレー） */
+    padding: 50px 0; /* 上下の余白を設定 */
+}
+
+#section5 .image {
+    width: 600px; /* 画像の幅を設定 */
+    height: 600px; /* 画像の高さを設定 */
+    background-size: cover;
+    background-position: center; /* 画像の位置を中央に設定 */
+}
+
+#section5 .description {
+    color: #fff; /* テキストの色を白に設定 */
+    font-size: 18px; /* フォントサイズを設定 */
+    max-width: 600px; /* 説明文の最大幅を設定 */
+}
+
+    </style>
+</head>
+<body>
+
+<!-- 表紙セクション -->
+<div class="header" id="header">
+    <h1>Portfolio</h1>
+    <p class="header-text">私の根源は「モノづくり」そのもの<br>ただ、ひたすらに<br>まだ分からない「未発見の体験」を求めて</p>
+    <div class="nav-links" id="navbar">
+        <a href="#section1">【earth】 </a>
+        <a href="#section2">【astele】 </a>
+        <a href="#section3">【Thief】 </a>
+        <a href="#section4">【detective】 </a>
+        <a href="#section5">【profile】 </a>
+        <a href="#top">【Top】</a>
+    </div>
+</div>
+
+<div class="container">
+    <!-- 新しい文章を追加 -->
+    <div class="text-content first-text" data-aos="fade-up">
+        <h1>ようこそ我がアトリエへ</h1>
+        <p>ここでは、私の作品や「思い」について詳しく紹介します</p>
+    </div>
+    
+    <!-- スクロールアニメーションを適用する画像 -->
+    <div id="section1" class="image-container reverse">
+        <div class="image" style="background-image: url('dai.jpg');" data-aos="fade-up"></div>
+        <div class="description">
+            <h1>「大地」</h1>
+            <p>彼女の名前は「デメテル」。</p>「豊穣の女神」であり、あらゆる物事の「源流」です。モノづくりを担うものとして、まずは思考を巡らせます。それが本当に人々に必要とされているのか、物事の原点に返り、人々の視点に立つことが重要です。また、前提としてクリエイターには「思いやり」や「優しさ」が必要不可欠です。大地を包み込むような幅広い視点で、この世に「楽しい」「幸せ」「良かった」という思いを巡らせたいです。</p>
+        </div>
+    </div>
+
+    <div id="section2" class="image-container reverse">
+        <div class="image" style="background-image: url('kikuzu.jpg');" data-aos="fade-up"></div>
+        <div class="description">
+            <h1>「木くず」</h1>
+            <p>彼女の名前は「アステル」。</p>現代の「アトリエ」の語源となりました。元々の意味は、「木片」や「工場」です。人々にとって「芸術・美術」は現代のように特別な存在や、選ばれし者が行うものという認識ではなく、もっと身近な存在にあったことが伺えます。同様にモノづくりも私生活には溢れています。小さな一つ一つであっても、誰もが触れる身近な概念です。身近な存在であるからこそ、奥が深い。深いからこそ、やりがいがある。そんな、強い意志を持って全世界に光を届けていきたい。それが私の信条です。</p>
+        </div>
+    </div>
+    <div id="section3" class="image-container reverse">
+        <div class="image" style="background-image: url('kaitou.jpg');" data-aos="fade-up"></div>
+        <div class="description">
+            <h1>「怪盗」</h1>
+            <p>彼女に名前はありません。</p>彼女の笑顔は贋作であり、手には様々な人間の思いや考えが籠った「泥」が垂れています。「怪盗」は、「名探偵」と相対する存在です。鮮やかな手口で「盗む」ことから泥棒とは区別されます。泥棒と違う要素として、怪盗には「プライド」があります。ものづくりとは、一種の「窃盗行為」です。標的は相手の「心」か「技術」か、それとも「アイデア」か。相手から得たインスピレーションを自分の中で消化し、新たな手口とする。そんな貪欲さがある人間こそが成長できるのだと思います。</p>
+        </div>
+    </div>
+    <div id="section4" class="image-container reverse">
+        <div class="image" style="background-image: url('tan.jpg');" data-aos="fade-up"></div>
+        <div class="description">
+            <h1>「名探偵」</h1>
+            <p>彼女の名前は「アナ」。</p>彼女は真実を見通す「瞳」を持っています。様々なアイテムを駆使し、最も良い結果を残す。ただ、彼女は知っています。「最良」こそが「最善」ではないことを。ときには冒険し、自ら危険な橋を渡る必要があるということを。彼女は片目を閉じました、真実を見続けることは自らの成長を止めてしまう。現実に囚われてしまう、不可能であると言ってしまう、誰もが陥ってしまう奈落です。真実を見ることは重要ですが、それは同時に「深淵」に成り得ることを深く理解しなければならないという思いを込めています。
+        </div>
+    </div>
+    <!-- 追加の文章セクション -->
+    <div class="text-content first-text" class="text-content" data-aos="fade-up">
+        <h1>ご覧いただきありがとうございました</h1>
+        <p>自らの考えや、思いを４人の女性に見立てて表現しました。<br>ただ、ひたすらにモノづくりを行うことが好きだということ。思い出に残り続けるような唯一無二を創りあげたい。それが私の「夢」です。</p>
+    </div>
+    <!--intoroduce-->
+    <div id="section5" class="image-container reverse">
+        <div class="image" style="background-image: url('me.jpg');" data-aos="fade-up"></div>
+        <div class="description">
+            <h1>Profile</h1>
+            <p><strong>Name:</strong> 大西 慧大</p>
+            <p><strong>Age:</strong> 21</p>
+            <p><strong>Skills:</strong> Clip Studio, JavaScript(HTML,CSS,React), Python3</p>
+            <p>こんにちは、大西 慧大と申します。モノづくりに情熱を注ぎ、様々なスキルを駆使して作品を作り上げています。デジタルアートやプログラミングに関心があり、日々技術を磨いています。また、現在大学内のコンビニエンスストアに直談判をし、モバイルオーダープロジェクトを進めております。常に新しい挑戦を続け、周囲に目を配り成長していきたいと考えています。</p>
+        </div>
+    </div>
+    
+
+</div>
+
+<a href="#top" id="scroll-top">Topへ戻る</a>
+
+<!-- AOSのJavaScriptファイルをCDNから読み込む -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+    // AOSを初期化してスクロールアニメーションを有効にする
+    AOS.init();
+
+    // スクロールに応じてナビゲーションリンクをフェードアウトさせるスクリプト
+    const navbar = document.getElementById('navbar');
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', () => {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            // 下にスクロールした場合
+            navbar.classList.add('hidden');
+        } else {
+            // 上にスクロールした場合
+            navbar.classList.remove('hidden');
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    });
+
+        // スクロールトップボタンの表示制御
+        const scrollTopButton = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopButton.style.display = 'block';
+        } else {
+            scrollTopButton.style.display = 'none';
+        }
+    });
+</script>
+</body>
+</html>
